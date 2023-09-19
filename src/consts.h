@@ -33,7 +33,8 @@
 #define IMU_BNO086 7
 #define IMU_BMI160 8
 #define IMU_ICM20948 9
-#define IMU_MechaT 10
+#define IMU_MechaTankle 10
+#define IMU_MechaTknee 11
 
 #define BOARD_SLIMEVR_LEGACY 1
 #define BOARD_SLIMEVR_DEV 2

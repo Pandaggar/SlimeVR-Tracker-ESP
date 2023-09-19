@@ -1,5 +1,5 @@
-#define IMU IMU_MPU6050
-#define SECOND_IMU IMU
+#define IMU IMU_MechaTknee
+#define SECOND_IMU IMU_MechaTankle
 #define BOARD BOARD_WROOM32
 #define IMU_ROTATION DEG_180
 #define SECOND_IMU_ROTATION DEG_180

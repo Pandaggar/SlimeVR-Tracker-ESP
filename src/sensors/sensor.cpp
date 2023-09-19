@@ -66,8 +66,10 @@ const char * getIMUNameByType(int imuType) {
             return "BMI160";
         case IMU_ICM20948:
             return "ICM20948";
-        case IMU_MechaT:
-            return "MechaT";
+        case IMU_MechaTankle:
+            return "MechaTankle";
+        case IMU_MechaTknee:
+            return "MechaTknee";
     }
     return "Unknown";
 }

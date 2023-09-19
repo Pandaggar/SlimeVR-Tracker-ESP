@@ -1,17 +1,14 @@
 /*
     SlimeVR Code is placed under the MIT license
     Copyright (c) 2022 TheDevMinerTV
-
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,10 +24,13 @@
 #include "bno055sensor.h"
 #include "bno080sensor.h"
 #include "mpu9250sensor.h"
+#include "MechaTknee.h"
 #include "mpu6050sensor.h"
 #include "bmi160sensor.h"
 #include "icm20948sensor.h"
 #include "ErroneousSensor.h"
+#include "MechaTankle.h"
+
 
 namespace SlimeVR
 {
@@ -48,6 +48,10 @@ namespace SlimeVR
                 firstIMUAddress = I2CSCAN::pickDevice(0x29, 0x28, true);
 #elif IMU == IMU_MPU9250 || IMU == IMU_BMI160 || IMU == IMU_MPU6500 || IMU == IMU_MPU6050 || IMU == IMU_ICM20948
                 firstIMUAddress = I2CSCAN::pickDevice(0x68, 0x69, true);
+#elif IMU == IMU_MechaTankle || IMU == IMU_MechaTankle
+                firstIMUAddress = 110;
+#elif IMU == IMU_MechaTknee || IMU == IMU_MechaTknee
+                firstIMUAddress = 110;
 #else
 #error Unsupported primary IMU
 #endif
@@ -72,6 +76,10 @@ namespace SlimeVR
                     m_Sensor1 = new MPU6050Sensor(0, IMU, firstIMUAddress, IMU_ROTATION);
 #elif IMU == IMU_ICM20948
                     m_Sensor1 = new ICM20948Sensor(0, firstIMUAddress, IMU_ROTATION);
+#elif IMU == IMU_MechaTankle
+                    m_Sensor1 = new MechaTankle(0, firstIMUAddress, IMU_ROTATION);
+#elif IMU == IMU_MechaTknee
+                    m_Sensor1 = new MechaTknee(0, firstIMUAddress, IMU_ROTATION);
 #endif
                 }
 
@@ -85,6 +93,8 @@ namespace SlimeVR
                 secondIMUAddress = I2CSCAN::pickDevice(0x28, 0x29, false);
 #elif SECOND_IMU == IMU_MPU9250 || SECOND_IMU == IMU_BMI160 || SECOND_IMU == IMU_MPU6500 || SECOND_IMU == IMU_MPU6050 || SECOND_IMU == IMU_ICM20948
                 secondIMUAddress = I2CSCAN::pickDevice(0x69, 0x68, false);
+#elif SECOND_IMU == IMU_MechaTankle || SECOND_IMU == IMU_MechaTankle
+                secondIMUAddress = 107;
 #else
 #error Unsupported secondary IMU
 #endif
@@ -113,6 +123,8 @@ namespace SlimeVR
                     m_Sensor2 = new MPU6050Sensor(1, SECOND_IMU, secondIMUAddress, SECOND_IMU_ROTATION);
 #elif SECOND_IMU == IMU_ICM20948
                     m_Sensor2 = new ICM20948Sensor(1, secondIMUAddress, SECOND_IMU_ROTATION);
+#elif SECOND_IMU == IMU_MechaTankle
+                    m_Sensor2 = new MechaTankle(1, secondIMUAddress, SECOND_IMU_ROTATION);
 #endif
                 }
 

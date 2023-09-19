@@ -59,7 +59,7 @@ void BNO055Sensor::motionLoop() {
         Network::sendInspectionRawIMUData(sensorId, UNPACK_VECTOR(gyro), 255, UNPACK_VECTOR(accel), 255, UNPACK_VECTOR(mag), 255);
     }
 #endif
-
+  
     // TODO Optimize a bit with setting rawQuat directly
     Quat quat = imu.getQuat();
     quaternion.set(quat.x, quat.y, quat.z, quat.w);
